@@ -141,6 +141,33 @@ console.log();
 
 function transfusionProcess(recepients, donors) {
   // kode disini
+
+  let varDon = donors;
+  let tempSuccess = [];
+  let tempFailed = [];
+
+  for (const rec of recepients) {
+    for (const don of varDon) {
+      if (canDonor(rec, don) === true) {
+        tempSuccess.push([rec, don]);
+        varDon.shift();
+        break;
+      }
+      else if (canDonor(rec, don) === false) {
+        tempFailed.push(rec);
+      }
+    }
+  }
+
+  for (const value of tempSuccess) {
+    console.log(`${value[0]} menerima donor dari ${value[1]}`);
+  }
+
+  for (const value of tempFailed) {
+    console.log(`${value} tidak selamat`);
+  }
+
+  return '';
 }
 
 console.log('Release 2\n==========');
